@@ -1,14 +1,12 @@
-package com.shibro.nativeproducts.data.entity;
+package com.shibro.nativeproducts.data.vo.RequestVo;
 
+import com.shibro.nativeproducts.data.vo.BaseRequestVo;
 import lombok.Data;
 
 import java.math.BigDecimal;
+
 @Data
-public class ProductsInfo {
-    private Integer id;
-
-    private String name;
-
+public class InsertProductInfoRequestVo extends BaseRequestVo {
     private String description;
 
     private String type;
@@ -22,6 +20,4 @@ public class ProductsInfo {
     private Double difficulty;
 
     private String mainPictureUrl;
-
-    private String otherPictureUrl;
 }

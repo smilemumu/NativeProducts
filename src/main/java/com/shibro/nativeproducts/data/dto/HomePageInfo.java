@@ -7,5 +7,5 @@ import java.util.List;
 
 @Data
 public class HomePageInfo {
-    private List<ProductsInfo> homePageInfos;
+    private List<HomePageInfoItem> homePageInfos;
 }

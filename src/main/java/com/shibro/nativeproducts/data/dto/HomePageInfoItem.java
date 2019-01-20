@@ -1,12 +1,12 @@
-package com.shibro.nativeproducts.data.entity;
+package com.shibro.nativeproducts.data.dto;
 
 import lombok.Data;
 
 import java.math.BigDecimal;
-@Data
-public class ProductsInfo {
-    private Integer id;
+import java.util.List;
 
+@Data
+public class HomePageInfoItem {
     private String name;
 
     private String description;
@@ -23,5 +23,5 @@ public class ProductsInfo {
 
     private String mainPictureUrl;
 
-    private String otherPictureUrl;
+    private List<String> otherPictureUrls;
 }

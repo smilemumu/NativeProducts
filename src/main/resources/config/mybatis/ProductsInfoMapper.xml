@@ -10,11 +10,12 @@
     <result column="sale_address" jdbcType="VARCHAR" property="saleAddress" />
     <result column="recommend_level" jdbcType="DOUBLE" property="recommendLevel" />
     <result column="difficulty" jdbcType="DOUBLE" property="difficulty" />
-    <result column="main_picture" jdbcType="LONGVARCHAR" property="mainPicture" />
+    <result column="main_picture_url" jdbcType="VARCHAR" property="mainPictureUrl" />
+    <result column="other_picture_url" jdbcType="VARCHAR" property="otherPictureUrl" />
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, name, description, type, price, sale_address, recommend_level, difficulty,main_picture
+    id, name, description, type, price, sale_address, recommend_level, difficulty,main_picture_url,other_picture_url
   </sql>
 
 
@@ -63,8 +64,11 @@
       <if test="difficulty != null">
         difficulty,
       </if>
-      <if test="mainPicture != null">
-        main_picture,
+      <if test="mainPictureUrl != null">
+        main_picture_url,
+      </if>
+      <if test="otherPictureUrl != null">
+        other_picture_url,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -92,8 +96,11 @@
       <if test="difficulty != null">
         #{difficulty,jdbcType=DOUBLE},
       </if>
-      <if test="mainPicture != null">
-        #{mainPicture,jdbcType=LONGVARCHAR},
+      <if test="mainPictureUrl != null">
+        #{mainPictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="otherPictureUrl != null">
+        #{otherPictureUrl,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -121,8 +128,11 @@
       <if test="difficulty != null">
         difficulty = #{difficulty,jdbcType=DOUBLE},
       </if>
-      <if test="mainPicture != null">
-        main_picture = #{mainPicture,jdbcType=LONGVARCHAR},
+      <if test="mainPictureUrl != null">
+        main_picture_url = #{mainPictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mainPictureUrl != null">
+        other_picture_url = #{otherPictureUrl,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
