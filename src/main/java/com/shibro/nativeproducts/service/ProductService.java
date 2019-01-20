@@ -1,7 +1,6 @@
 package com.shibro.nativeproducts.service;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import com.shibro.nativeproducts.data.dto.HomePageInfo;
 import com.shibro.nativeproducts.data.dto.HomePageInfoItem;
 import com.shibro.nativeproducts.data.entity.ProductsInfo;
@@ -16,9 +15,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -56,16 +57,29 @@ public class ProductService {
         return homePageInfoItems;
     }
 
+    /**
+     * 库中存的  是字符串，返回给前端以List数组形式返回
+     * @param otherPictureUrl
+     * @return
+     */
     private List<String> convertOtherPictureUrls(String otherPictureUrl) {
-       List<String> otherPictureUrls  = JSON.parseObject(otherPictureUrl,new TypeReference<List<String>>(){});
+       List<String> otherPictureUrls  = Arrays.asList(otherPictureUrl.split(","));
        return otherPictureUrls;
     }
 
     public BaseResponseVo insertProductInfo(InsertProductInfoRequestVo requestVo) {
         Boolean flag =true;
         try{
-            ProductsInfo productsInfo = JSON.parseObject(JSON.toJSONString(requestVo),ProductsInfo.class);
-            productsInfo.setOtherPictureUrl(stringSplit2List2Json(productsInfo.getOtherPictureUrl()));
+            ProductsInfo productsInfo = new ProductsInfo();
+            productsInfo.setName(requestVo.getName());
+            productsInfo.setDescription(requestVo.getDescription());
+            productsInfo.setType(requestVo.getType());
+            productsInfo.setPrice(new BigDecimal(requestVo.getPrice()).setScale(2,BigDecimal.ROUND_HALF_UP));
+            productsInfo.setSaleAddress(requestVo.getSaleAddress());
+            productsInfo.setRecommendLevel(requestVo.getRecommendLevel());
+            productsInfo.setDifficulty(requestVo.getDifficulty());
+            productsInfo.setMainPictureUrl(requestVo.getMainPictureUrl());
+            productsInfo.setOtherPictureUrl(list2String(requestVo.getOtherPictureUrls()));
             productsInfoMapper.insertSelective(productsInfo);
         }catch (Exception e){
             LOG.error("插入土特产信息失败,message:{}",e.getMessage());
@@ -78,8 +92,8 @@ public class ProductService {
         }
     }
 
-    private String stringSplit2List2Json(String otherPictureUrl) {
-        return JSON.toJSONString(Arrays.asList(otherPictureUrl.split(",")));
+    private String list2String(List<String> otherPictureUrls) {
+        return otherPictureUrls.stream().collect(Collectors.joining(","));
     }
 
     public BaseResponseVo deleteProductInfo(DeleteProductInfoRequestVo requestVo) {
@@ -100,8 +114,17 @@ public class ProductService {
     public BaseResponseVo updateProductInfo(UpdateProductInfoRequestVo requestVo) {
         Boolean flag =true;
         try{
-            ProductsInfo productsInfo = JSON.parseObject(JSON.toJSONString(requestVo),ProductsInfo.class);
-            productsInfo.setOtherPictureUrl(stringSplit2List2Json(productsInfo.getOtherPictureUrl()));
+            ProductsInfo productsInfo = new ProductsInfo();
+            productsInfo.setId(requestVo.getId());
+            productsInfo.setName(requestVo.getName());
+            productsInfo.setDescription(requestVo.getDescription());
+            productsInfo.setType(requestVo.getType());
+            productsInfo.setPrice(new BigDecimal(requestVo.getPrice()).setScale(2,BigDecimal.ROUND_HALF_UP));
+            productsInfo.setSaleAddress(requestVo.getSaleAddress());
+            productsInfo.setRecommendLevel(requestVo.getRecommendLevel());
+            productsInfo.setDifficulty(requestVo.getDifficulty());
+            productsInfo.setMainPictureUrl(requestVo.getMainPictureUrl());
+            productsInfo.setOtherPictureUrl(list2String(requestVo.getOtherPictureUrls()));
             productsInfoMapper.updateByPrimaryKeySelective(productsInfo);
         }catch (Exception e){
             LOG.error("更新土特产信息失败,message:{}",e.getMessage());
@@ -113,4 +136,8 @@ public class ProductService {
             return BaseResponseVo.failResponseVo();
         }
     }
+
+    public static void main(String[] args) {
+    }
+
 }

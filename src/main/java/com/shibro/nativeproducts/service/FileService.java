@@ -87,7 +87,5 @@ public class FileService {
         return uuid+"."+fileOriginName.split("\\.")[1];
     }
 
-    public static void main(String[] args) {
-    }
 
 }

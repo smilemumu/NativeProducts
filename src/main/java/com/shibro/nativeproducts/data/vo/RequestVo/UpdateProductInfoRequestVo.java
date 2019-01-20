@@ -5,16 +5,19 @@ import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 public class UpdateProductInfoRequestVo extends BaseRequestVo {
     private Integer id;
 
+    private String name;
+
     private String description;
 
     private String type;
 
-    private BigDecimal price;
+    private String price;
 
     private String saleAddress;
 
@@ -22,5 +25,7 @@ public class UpdateProductInfoRequestVo extends BaseRequestVo {
 
     private Double difficulty;
 
-    private MultipartFile mainPictureUrl;
+    private String mainPictureUrl;
+
+    private List<String> otherPictureUrls;
 }

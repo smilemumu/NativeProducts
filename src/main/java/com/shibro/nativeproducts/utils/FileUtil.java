@@ -22,7 +22,6 @@ public class FileUtil {
      */
     public static boolean createFile(String fileString, List<String> dataList){
         boolean isSucess=false;
-//        String separator = System.getProperty("file.separator");
         File filePath = new File(fileString.substring(0, fileString.lastIndexOf("/")));
         mkDir(filePath);
         //判断文件是否存在，不存在则递归创建文件夹，创建文件
@@ -92,11 +91,9 @@ public class FileUtil {
      */
     public static String getFileMD5(File file)
     {
-//        File file = new File(fileName);
         if(!file.exists() || !file.isFile()){
             return "";
         }
-        
         byte[] buffer = new byte[2048];
         try {
             MessageDigest digest = MessageDigest.getInstance("MD5");
@@ -121,20 +118,14 @@ public class FileUtil {
                 hexValue.append(Integer.toHexString(val));
             }
             return hexValue.toString();
-            
-            //String hash = new BigInteger(1,digest.digest()).toString(16);
-            //return hash;
-            
+
         } catch (NoSuchAlgorithmException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return "";
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return "";
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return "";
         }
@@ -155,17 +146,14 @@ public class FileUtil {
      * @return
      */
     public static boolean updateFileName(String path,String oldname,String newname){
-    	
     	boolean flag =false;
-    	
-    	 if(!oldname.equals(newname)){//新的文件名和以前文件名不同时,才有必要进行重命名 
+    	 if(!oldname.equals(newname)){
              File oldfile=new File(path+"/"+oldname); 
              File newfile=new File(path+"/"+newname); 
              if(!oldfile.exists()){
             	 flag=false;
-//                 return;//重命名文件不存在
              }
-             if(newfile.exists())//若在该目录下已经有一个文件和新文件名相同，则不允许重命名 
+             if(newfile.exists())
                  System.out.println(newname+"已经存在！"); 
              else{ 
                  oldfile.renameTo(newfile); 
@@ -176,7 +164,4 @@ public class FileUtil {
          }
     	 return flag;
     }
-    
-    
-    
 }
