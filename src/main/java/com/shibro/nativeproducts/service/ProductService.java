@@ -1,6 +1,5 @@
 package com.shibro.nativeproducts.service;
 
-import com.alibaba.fastjson.JSON;
 import com.shibro.nativeproducts.data.dto.HomePageInfo;
 import com.shibro.nativeproducts.data.dto.HomePageInfoItem;
 import com.shibro.nativeproducts.data.entity.ProductsInfo;
@@ -46,7 +45,7 @@ public class ProductService {
             homePageInfoItem.setName(item.getName());
             homePageInfoItem.setDescription(item.getDescription());
             homePageInfoItem.setType(item.getType());
-            homePageInfoItem.setPrice(item.getPrice());
+            homePageInfoItem.setPrice(item.getPrice().toString());
             homePageInfoItem.setSaleAddress(item.getSaleAddress());
             homePageInfoItem.setRecommendLevel(item.getRecommendLevel());
             homePageInfoItem.setDifficulty(item.getDifficulty());

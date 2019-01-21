@@ -13,7 +13,7 @@ public class HomePageInfoItem {
 
     private String type;
 
-    private BigDecimal price;
+    private String price;
 
     private String saleAddress;
 
