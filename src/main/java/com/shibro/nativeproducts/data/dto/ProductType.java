@@ -5,6 +5,6 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class HomePageInfo {
-    private List<HomePageInfoItem> homePageInfos;
+public class ProductType {
+    private List<ProductTypeItem> types;
 }

@@ -1,10 +1,8 @@
-package com.shibro.nativeproducts.data.vo.RequestVo;
+package com.shibro.nativeproducts.data.vo.requestvo;
 
 import com.shibro.nativeproducts.data.vo.BaseRequestVo;
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Data

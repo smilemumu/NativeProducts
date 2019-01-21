@@ -4,10 +4,12 @@ import com.shibro.nativeproducts.data.dto.HomePageInfo;
 import com.shibro.nativeproducts.data.dto.HomePageInfoItem;
 import com.shibro.nativeproducts.data.entity.ProductsInfo;
 import com.shibro.nativeproducts.data.enums.ErrorCodeEnum;
+import com.shibro.nativeproducts.data.enums.ProductTypeEnum;
+import com.shibro.nativeproducts.data.vo.BaseRequestVo;
 import com.shibro.nativeproducts.data.vo.BaseResponseVo;
-import com.shibro.nativeproducts.data.vo.RequestVo.DeleteProductInfoRequestVo;
-import com.shibro.nativeproducts.data.vo.RequestVo.InsertProductInfoRequestVo;
-import com.shibro.nativeproducts.data.vo.RequestVo.UpdateProductInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestvo.DeleteProductInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestvo.InsertProductInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestvo.UpdateProductInfoRequestVo;
 import com.shibro.nativeproducts.persistence.ProductsInfoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -139,4 +141,7 @@ public class ProductService {
     public static void main(String[] args) {
     }
 
+    public BaseResponseVo queryProductType(BaseRequestVo requestVo) {
+        return BaseResponseVo.successResponseVo(ProductTypeEnum.getProductType());
+    }
 }

@@ -2,9 +2,9 @@ package com.shibro.nativeproducts.controller;
 
 import com.shibro.nativeproducts.data.vo.BaseRequestVo;
 import com.shibro.nativeproducts.data.vo.BaseResponseVo;
-import com.shibro.nativeproducts.data.vo.RequestVo.DeleteProductInfoRequestVo;
-import com.shibro.nativeproducts.data.vo.RequestVo.InsertProductInfoRequestVo;
-import com.shibro.nativeproducts.data.vo.RequestVo.UpdateProductInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestvo.DeleteProductInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestvo.InsertProductInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestvo.UpdateProductInfoRequestVo;
 import com.shibro.nativeproducts.service.ProductService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,5 +60,15 @@ public class ProductController {
     @RequestMapping(value = "/product/updateProductInfo", method = RequestMethod.POST)
     public BaseResponseVo updateProductInfo(@RequestBody UpdateProductInfoRequestVo requestVo){
         return productService.updateProductInfo(requestVo);
+    }
+
+    /**
+     * 土特产类别信息
+     * @param requestVo
+     * @return
+     */
+    @RequestMapping(value = "/product/queryProductType", method = RequestMethod.POST)
+    public BaseResponseVo updateProductInfo(@RequestBody BaseRequestVo requestVo){
+        return productService.queryProductType(requestVo);
     }
 }
