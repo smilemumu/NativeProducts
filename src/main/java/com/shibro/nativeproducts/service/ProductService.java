@@ -44,6 +44,7 @@ public class ProductService {
         HomePageInfoItem homePageInfoItem;
         for(ProductsInfo item:productsInfos){
             homePageInfoItem = new HomePageInfoItem();
+            homePageInfoItem.setId(item.getId());
             homePageInfoItem.setName(item.getName());
             homePageInfoItem.setDescription(item.getDescription());
             homePageInfoItem.setType(item.getType());
