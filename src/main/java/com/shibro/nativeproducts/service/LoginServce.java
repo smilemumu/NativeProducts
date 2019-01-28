@@ -61,25 +61,21 @@ public class LoginServce {
     public BaseResponseVo login(LoginRequestVo requestVo, HttpServletRequest request) {
         try{
             //验证token
-            String token = (String) request.getSession().getAttribute("token");
-            if(StringUtils.isEmpty(token)){
+            String sessionToken = (String) request.getSession().getAttribute("token");
+            if(StringUtils.isEmpty(sessionToken)){
                 UserInfo userInfo= userInfoMapper.selectByUserInfo(JSON.parseObject(JSON.toJSONString(requestVo),UserInfo.class));
                 if(Objects.nonNull(userInfo)){
-                    token = TokenUtil.generateToken(userInfo.getUserName());
-                    request.getSession().setAttribute("token",token);
+                    sessionToken = TokenUtil.generateToken(userInfo.getUserName());
+                    request.getSession().setAttribute("token",sessionToken);
                     request.getSession().setAttribute("userName",userInfo.getUserName());
-                    return BaseResponseVo.successResponseVo(new LoginRespoonseVo(token));
+                    return BaseResponseVo.successResponseVo(new LoginRespoonseVo(sessionToken));
                 }else{
                     return BaseResponseVo.failResponseVo(ErrorCodeEnum.LOGIN_FAIL);
                 }
             }else{
                 LOG.info("重复登录");
-                String tokenValue = (String) request.getSession().getAttribute("token");
-                if(tokenValue.equals(TokenUtil.generateToken((String) request.getSession().getAttribute("userName")))){
-                    return BaseResponseVo.failResponseVo(ErrorCodeEnum.LOGIN_REPAET);
-                }else{
-                    return BaseResponseVo.failResponseVo(ErrorCodeEnum.SYSTEM_ERROR);
-                }
+                String generateToken = TokenUtil.generateToken((String) request.getSession().getAttribute("userName"));
+                return BaseResponseVo.successResponseVo(new LoginRespoonseVo(generateToken));
             }
         }catch (Exception e){
             LOG.error("登陆异常{}",e);
