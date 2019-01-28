@@ -10,16 +10,14 @@
 	</parent>
 	<groupId>com.shibro</groupId>
 	<artifactId>NativeProducts</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.1.0</version>
 	<name>NativeProducts</name>
-	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
 
 	<dependencies>
-
 		<!--web核心模块 -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -67,10 +65,16 @@
 			<optional>true</optional>
 			<scope>true</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.47</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.8.13</version>
 		</dependency>
 
 
@@ -80,28 +84,50 @@
 		<profile> <!-- sit开发环境 -->
 			<id>sit</id>
 			<properties>
-				<profiles.dir>sit</profiles.dir>
+				<profile.active>sit</profile.active>
 				<profile.path>config/resource/sit</profile.path>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 		</profile>
 		<profile> <!-- 生产环境 -->
 			<id>prd</id>
 			<properties>
-				<profiles.dir>prd</profiles.dir>
+				<profile.active>prd</profile.active>
 				<profile.path>config/resource/prd</profile.path>
 			</properties>
 		</profile>
 	</profiles>
+
+
 	<build>
+		<finalName>NativeProducts</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources/${profile.path}</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>**/prd/*.*</exclude>
+					<exclude>**/sit/*.*</exclude>
+				</excludes>
+			</resource>
+		</resources>
 	</build>
 
 </project>

@@ -51,6 +51,14 @@ public class BaseResponseVo {
         this.msg = errorCodeEnum.getDesc();
     }
 
+    public static BaseResponseVo failResponseVo(ErrorCodeEnum errorCodeEnum) {
+        BaseResponseVo responseVo = new BaseResponseVo();
+        responseVo.setSuccess(false);
+        responseVo.setCode(errorCodeEnum.getCode());
+        responseVo.setMsg(errorCodeEnum.getDesc());
+        return responseVo;
+    }
+
 
     public static BaseResponseVo failResponseVo() {
         BaseResponseVo responseVo = new BaseResponseVo();
@@ -66,6 +74,13 @@ public class BaseResponseVo {
         responseVo.setCode(ErrorCodeEnum.SUCCESS.getCode());
         responseVo.setMsg(ErrorCodeEnum.SUCCESS.getDesc());
         responseVo.setData(data);
+        return responseVo;
+    }
+    public static BaseResponseVo successResponseVo() {
+        BaseResponseVo responseVo = new BaseResponseVo();
+        responseVo.setSuccess(true);
+        responseVo.setCode(ErrorCodeEnum.SUCCESS.getCode());
+        responseVo.setMsg(ErrorCodeEnum.SUCCESS.getDesc());
         return responseVo;
     }
 
