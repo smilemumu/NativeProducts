@@ -50,7 +50,7 @@ public class LoginFilter implements Filter {
         HttpSession session = req.getSession();
 		String path = req.getRequestURL().toString();
         LOG.info("request path:"+path);
-        Boolean pass = specialNotNeedLoginPattern.stream().map(pattern->pathMatcher.match(pattern,path)).anyMatch(item->item.equals(true));
+            Boolean pass = specialNotNeedLoginPattern.stream().map(pattern->pathMatcher.match(pattern,path)).anyMatch(item->item.equals(true));
         if(pass){
             chain.doFilter(request, response);
         }else{

@@ -47,7 +47,7 @@ public class ProductService {
             homePageInfoItem.setId(item.getId());
             homePageInfoItem.setName(item.getName());
             homePageInfoItem.setDescription(item.getDescription());
-            homePageInfoItem.setType(item.getType());
+            homePageInfoItem.setType(ProductTypeEnum.getByType(item.getType()));
             homePageInfoItem.setPrice(item.getPrice().toString());
             homePageInfoItem.setSaleAddress(item.getSaleAddress());
             homePageInfoItem.setRecommendLevel(item.getRecommendLevel());
