@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <!-- 文件输出格式 -->
     <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
     <!-- prd文件路径 -->
-    <!--<property name="PRD_FILE_PATH" value="/root/SpringBootProgram" />-->
-    <property name="PRD_FILE_PATH" value="C:/idea_projects/logs" />
+    <property name="PRD_FILE_PATH" value="/root/SpringBootProgram/logs" />
+    <!--<property name="PRD_FILE_PATH" value="C:/idea_projects/logs" />-->
     <!-- 开发环境 -->
     <!-- springProfile 标签的 name 属性对应 application.properties 中的 spring.profiles.active 的配置。 -->
     <!-- 生产环境 -->
@@ -22,6 +24,7 @@
         </appender>
         <root level="info">
             <appender-ref ref="PRD_FILE_PATH" />
+            <appender-ref ref="CONSOLE" />
         </root>
     </springProfile>
 

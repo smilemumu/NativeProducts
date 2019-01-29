@@ -42,6 +42,11 @@ public enum ProductTypeEnum {
                 .map(i->i.getDesc()).findFirst().orElse(null);
     }
 
+    public static String getByName(String type) {
+        return Arrays.stream(ProductTypeEnum.values()).filter(i->i.getDesc().equals(type))
+                .map(i->i.getDesc()).findFirst().orElse(null);
+    }
+
     public Integer getCode() {
         return code;
     }
