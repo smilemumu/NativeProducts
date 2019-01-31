@@ -47,7 +47,7 @@ public class ProductService {
             homePageInfoItem.setId(item.getId());
             homePageInfoItem.setName(item.getName());
             homePageInfoItem.setDescription(item.getDescription());
-            homePageInfoItem.setType(ProductTypeEnum.getByType(item.getType()));
+            homePageInfoItem.setType(item.getType());
             homePageInfoItem.setPrice(item.getPrice().toString());
             homePageInfoItem.setSaleAddress(item.getSaleAddress());
             homePageInfoItem.setRecommendLevel(item.getRecommendLevel());
@@ -75,7 +75,7 @@ public class ProductService {
             ProductsInfo productsInfo = new ProductsInfo();
             productsInfo.setName(requestVo.getName());
             productsInfo.setDescription(requestVo.getDescription());
-            productsInfo.setType(ProductTypeEnum.getByName(requestVo.getType()));
+            productsInfo.setType(requestVo.getType());
             productsInfo.setPrice(new BigDecimal(requestVo.getPrice()).setScale(2,BigDecimal.ROUND_HALF_UP));
             productsInfo.setSaleAddress(requestVo.getSaleAddress());
             productsInfo.setRecommendLevel(requestVo.getRecommendLevel());
@@ -120,7 +120,7 @@ public class ProductService {
             productsInfo.setId(requestVo.getId());
             productsInfo.setName(requestVo.getName());
             productsInfo.setDescription(requestVo.getDescription());
-            productsInfo.setType(ProductTypeEnum.getByName(requestVo.getType()));
+            productsInfo.setType(requestVo.getType());
             productsInfo.setPrice(new BigDecimal(requestVo.getPrice()).setScale(2,BigDecimal.ROUND_HALF_UP));
             productsInfo.setSaleAddress(requestVo.getSaleAddress());
             productsInfo.setRecommendLevel(requestVo.getRecommendLevel());

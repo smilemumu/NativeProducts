@@ -60,22 +60,14 @@ public class LoginServce {
 
     public BaseResponseVo login(LoginRequestVo requestVo, HttpServletRequest request) {
         try{
-            //验证token
-            String sessionToken = (String) request.getSession().getAttribute("token");
-            if(StringUtils.isEmpty(sessionToken)){
-                UserInfo userInfo= userInfoMapper.selectByUserInfo(JSON.parseObject(JSON.toJSONString(requestVo),UserInfo.class));
-                if(Objects.nonNull(userInfo)){
-                    sessionToken = TokenUtil.generateToken(userInfo.getUserName());
-                    request.getSession().setAttribute("token",sessionToken);
-                    request.getSession().setAttribute("userName",userInfo.getUserName());
-                    return BaseResponseVo.successResponseVo(new LoginRespoonseVo(sessionToken));
-                }else{
-                    return BaseResponseVo.failResponseVo(ErrorCodeEnum.LOGIN_FAIL);
-                }
+            UserInfo userInfo= userInfoMapper.selectByUserInfo(JSON.parseObject(JSON.toJSONString(requestVo),UserInfo.class));
+            if(Objects.nonNull(userInfo)){
+                String sessionToken = TokenUtil.generateToken(userInfo.getUserName());
+                request.getSession().setAttribute("token",sessionToken);
+                request.getSession().setAttribute("userName",userInfo.getUserName());
+                return BaseResponseVo.successResponseVo(new LoginRespoonseVo(sessionToken));
             }else{
-                LOG.info("重复登录");
-                String generateToken = TokenUtil.generateToken((String) request.getSession().getAttribute("userName"));
-                return BaseResponseVo.successResponseVo(new LoginRespoonseVo(generateToken));
+                return BaseResponseVo.failResponseVo(ErrorCodeEnum.LOGIN_FAIL);
             }
         }catch (Exception e){
             LOG.error("登陆异常{}",e);

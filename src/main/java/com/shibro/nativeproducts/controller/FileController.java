@@ -20,7 +20,7 @@ public class FileController {
     private FileService fileService;
 
     @RequestMapping(value = "/file/upload",method = RequestMethod.POST)
-    public BaseResponseVo uploadFile(@RequestParam  MultipartFile file){
+    public BaseResponseVo uploadFile(@RequestBody  MultipartFile file){
         BaseResponseVo responseVo = fileService.uploadFile(file);
         return responseVo;
     }

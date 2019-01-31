@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class ProductTypeItem {
-    private Integer type;
+    private String type;
     private String name;
 }

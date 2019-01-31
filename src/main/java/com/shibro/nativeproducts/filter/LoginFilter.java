@@ -32,12 +32,14 @@ public class LoginFilter implements Filter {
     private List<String> specialNotNeedLoginPattern = new ArrayList<>();
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        String staticUlr = "**/static/**";
+        String staticUrl = "**/static/**";
+        String picureUrl = "**/picture/**";
         String loginUrl = "**/login/";
         String logoutUrl = "**/logout/";
         String registerUrl = "**/register/";
         LOG.info("初始化用户登录过滤器");
-        specialNotNeedLoginPattern.add(staticUlr);
+        specialNotNeedLoginPattern.add(staticUrl);
+        specialNotNeedLoginPattern.add(picureUrl);
         specialNotNeedLoginPattern.add(loginUrl);
         specialNotNeedLoginPattern.add(logoutUrl);
         specialNotNeedLoginPattern.add(registerUrl);

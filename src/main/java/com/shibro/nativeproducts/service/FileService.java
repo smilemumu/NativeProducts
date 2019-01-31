@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -26,6 +28,11 @@ public class FileService {
      */
     @Value("${file.path.local.url}")
     private String  localUrl;
+
+    @Value("${server.port}")
+    private String  serverPort;
+
+
 
     public BaseResponseVo uploadFile(MultipartFile file) {
         BaseResponseVo baseResponseVo = new BaseResponseVo(ErrorCodeEnum.SUCCESS);
@@ -59,7 +66,7 @@ public class FileService {
     }
 
     private String saveFile(String uuidName, MultipartFile file) {
-            String url = localUrl+uuidName;
+            String url = "http://"+getLocalHost()+":"+serverPort+"/picture/"+uuidName;
         try {
             String savePath = localUrl;
             File saveFile  = new File(savePath);
@@ -87,5 +94,14 @@ public class FileService {
         return uuid+"."+fileOriginName.split("\\.")[1];
     }
 
+    private String getLocalHost() {
+        String host = null;
+        try {
+            host = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            LOG.error("get server host Exception e:", e);
+        }
+        return host;
+    }
 
 }

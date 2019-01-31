@@ -7,20 +7,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum ProductTypeEnum {
-    CRAFTS(1,"工艺品"),
-    DRINK(2,"饮料"),
-    CONDIMENT(3,"调味品"),
-    TEA(4,"茶叶"),
-    GRAIN_AND_OIL(5,"粮油"),
-    FRUIT_AND_VEGETABL(6,"水果蔬菜"),
-    OTHERFOOD(7,"副食品"),
-    ALGAE(8,"食用菌藻"),
-    BIRDS(9,"畜牧特禽"),
-    AQUATIC_PRODUCTS(10,"水产海货"),
-    OTHER(11,"其他"),
+    CRAFTS("1","工艺品"),
+    DRINK("2","饮料"),
+    CONDIMENT("3","调味品"),
+    TEA("4","茶叶"),
+    GRAIN_AND_OIL("5","粮油"),
+    FRUIT_AND_VEGETABL("6","水果蔬菜"),
+    OTHERFOOD("7","副食品"),
+    ALGAE("8","食用菌藻"),
+    BIRDS("9","畜牧特禽"),
+    AQUATIC_PRODUCTS("10","水产海货"),
+    OTHER("11","其他"),
     ;
 
-    private Integer code;
+    private String code;
     private String desc;
 
     public static List<ProductTypeItem> getProductType(){
@@ -32,7 +32,7 @@ public enum ProductTypeEnum {
         }).collect(Collectors.toList());
     }
 
-    ProductTypeEnum(Integer code, String desc) {
+    ProductTypeEnum(String code, String desc) {
         this.code = code;
         this.desc = desc;
     }
@@ -47,11 +47,11 @@ public enum ProductTypeEnum {
                 .map(i->i.getDesc()).findFirst().orElse(null);
     }
 
-    public Integer getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
