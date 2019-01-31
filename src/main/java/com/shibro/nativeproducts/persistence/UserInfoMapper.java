@@ -8,4 +8,8 @@ public interface UserInfoMapper {
     int insertSelective(UserInfo record);
 
     void updateByPrimaryKeySelective(UserInfo record);
+
+    UserInfo selectByUserInfo(UserInfo record);
+
+    UserInfo isExistsUserName(UserInfo parseObject);
 }

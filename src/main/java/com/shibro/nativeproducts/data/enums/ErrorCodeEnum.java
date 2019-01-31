@@ -6,6 +6,10 @@ public enum ErrorCodeEnum {
     SYSTEM_ERROR(70002,"系统异常，请稍后再试"),
     PARAMS_ERROR(70003,"参数异常"),
     RESULT_IS_NULL(70004,"返回数据为空"),
+    LOGIN_FAIL(70005,"登录失败，请输入正确的用户名密码"),
+    LOGIN_REPAET(70006,"登录失败，请不要重复登录"),
+    NEED_LOGIN(70007,"未登录"),
+    REGISTER_REPEAT_NAME(70008,"该用户名已被注册，请重新输入"),
     ;
     private Integer code;
     private String desc;

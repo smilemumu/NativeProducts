@@ -16,6 +16,8 @@ import javax.annotation.Resource;
 @RestController
 public class ProductController {
 
+//    http://down-www.newasp.net/pcdown/soft/soft1/intellij.idea.2018.ult.rar
+//    idea下载地址
 
     @Resource
     private ProductService productService;

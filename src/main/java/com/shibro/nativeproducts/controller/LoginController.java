@@ -3,14 +3,15 @@ package com.shibro.nativeproducts.controller;
 import com.shibro.nativeproducts.data.vo.BaseResponseVo;
 import com.shibro.nativeproducts.data.vo.requestvo.login.*;
 import com.shibro.nativeproducts.service.LoginServce;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
-@Controller
+@RestController
 public class LoginController {
 
     @Resource
@@ -22,10 +23,9 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
-    public BaseResponseVo login(@RequestBody LoginRequestVo requestVo){
-        return loginServce.login(requestVo);
+    public BaseResponseVo login(@RequestBody LoginRequestVo requestVo, HttpServletRequest request){
+        return loginServce.login(requestVo,request);
     }
-
 
     /**
      * 退出
@@ -33,8 +33,8 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "/user/logout", method = RequestMethod.POST)
-    public BaseResponseVo logout(@RequestBody LogoutRequestVo requestVo){
-        return loginServce.logout(requestVo);
+    public BaseResponseVo logout(@RequestBody LogoutRequestVo requestVo,HttpServletRequest request){
+        return loginServce.logout(requestVo,request);
     }
 
     /**
