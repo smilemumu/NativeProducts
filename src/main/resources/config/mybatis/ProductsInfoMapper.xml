@@ -12,17 +12,67 @@
     <result column="difficulty" jdbcType="DOUBLE" property="difficulty" />
     <result column="main_picture_url" jdbcType="VARCHAR" property="mainPictureUrl" />
     <result column="other_picture_url" jdbcType="VARCHAR" property="otherPictureUrl" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, name, description, type, price, sale_address, recommend_level, difficulty,main_picture_url,other_picture_url
+    id, name, description, type, price, sale_address, recommend_level, difficulty,main_picture_url,other_picture_url,update_time
   </sql>
 
 
-  <select id="selectAll"  resultMap="BaseResultMap">
+  <select id="selectByParam"  resultMap="BaseResultMap" parameterType="com.shibro.nativeproducts.data.vo.requestvo.HomePageInfoRequestVo">
     select
     <include refid="Base_Column_List" />
     from products_info
+    <where>
+      1=1
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="keyWord != null and keyWord != ''">
+        and (
+        `name` like CONCAT('%',#{keyWord},'%')
+        or description like CONCAT('%',#{keyWord},'%')
+        or `type` like CONCAT('%',#{keyWord},'%')
+        or price like CONCAT('%',#{keyWord},'%')
+        or sale_address like CONCAT('%',#{keyWord},'%')
+        or recommend_level like CONCAT('%',#{keyWord},'%')
+        or difficulty like CONCAT('%',#{keyWord},'%')
+        )
+      </if>
+    </where>
+    order by
+    <if test="sort != null and sortType!= null">
+        ${sort}  ${sortType} ,
+    </if>
+    update_time desc
+    <if test = "page != null and count !=null">
+      limit #{page},#{count};
+    </if>
+
+  </select>
+
+  <select id="selectCount" parameterType="com.shibro.nativeproducts.data.vo.requestvo.HomePageInfoRequestVo" resultType="java.lang.Integer">
+    select
+    count(id)
+    from products_info
+    <where>
+      1=1
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="keyWord != null and keyWord != ''">
+        and (
+        `name` like CONCAT('%',#{keyWord},'%')
+        or description like CONCAT('%',#{keyWord},'%')
+        or `type` like CONCAT('%',#{keyWord},'%')
+        or price like CONCAT('%',#{keyWord},'%')
+        or sale_address like CONCAT('%',#{keyWord},'%')
+        or recommend_level like CONCAT('%',#{keyWord},'%')
+        or difficulty like CONCAT('%',#{keyWord},'%')
+        )
+      </if>
+    </where>
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

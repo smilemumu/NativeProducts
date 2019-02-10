@@ -5,14 +5,17 @@ import com.shibro.nativeproducts.data.dto.FileUploadResponseItem;
 import com.shibro.nativeproducts.data.enums.ErrorCodeEnum;
 import com.shibro.nativeproducts.data.vo.BaseResponseVo;
 import com.shibro.nativeproducts.utils.FileUtil;
+import com.shibro.nativeproducts.utils.NetWorkIpAdressUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.InetAddress;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,15 +33,15 @@ public class FileService {
     private String  localUrl;
 
     @Value("${server.port}")
-    private String  serverPort;
+    private String  port;
 
 
 
-    public BaseResponseVo uploadFile(MultipartFile file) {
+    public BaseResponseVo uploadFile(MultipartFile file, HttpServletRequest request) {
         BaseResponseVo baseResponseVo = new BaseResponseVo(ErrorCodeEnum.SUCCESS);
         String fileOriginName = file.getOriginalFilename();
         String uuidName = getUUIDName(fileOriginName);
-        String url = saveFile(uuidName,file);
+        String url = saveFile(uuidName,file,request);
         FileUploadResponseItem item = new FileUploadResponseItem();
         item.setName(file.getOriginalFilename());
         item.setUrl(url);
@@ -47,14 +50,14 @@ public class FileService {
     }
 
 
-    public BaseResponseVo uploadFile( List<MultipartFile> files) {
+    public BaseResponseVo uploadFile( List<MultipartFile> files,HttpServletRequest request) {
         BaseResponseVo baseResponseVo = new BaseResponseVo(ErrorCodeEnum.SUCCESS);
         FileUploadResponse responseData = new FileUploadResponse();
         List<FileUploadResponseItem> items = new ArrayList<>();
         for(MultipartFile file:files){
             String fileOriginName = file.getOriginalFilename();
             String uuidName = getUUIDName(fileOriginName);
-            String url = saveFile(uuidName,file);
+            String url = saveFile(uuidName,file,request);
             FileUploadResponseItem item = new FileUploadResponseItem();
             item.setName(uuidName);
             item.setUrl(url);
@@ -65,8 +68,16 @@ public class FileService {
         return baseResponseVo;
     }
 
-    private String saveFile(String uuidName, MultipartFile file) {
-            String url = "http://"+getLocalHost()+":"+serverPort+"/picture/"+uuidName;
+    private String saveFile(String uuidName, MultipartFile file,HttpServletRequest request) {
+
+        String ip = "";
+        try {
+            ip = NetWorkIpAdressUtil.getRealIp();
+        } catch (SocketException e) {
+            LOG.error("获取ip地址异常{}",e);
+        }
+        String url ="http://"+ip+":"+port+"/picture/"+uuidName;
+        LOG.info("生成的图片url:{}",url);
         try {
             String savePath = localUrl;
             File saveFile  = new File(savePath);

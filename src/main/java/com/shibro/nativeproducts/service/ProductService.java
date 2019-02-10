@@ -8,6 +8,7 @@ import com.shibro.nativeproducts.data.enums.ProductTypeEnum;
 import com.shibro.nativeproducts.data.vo.BaseRequestVo;
 import com.shibro.nativeproducts.data.vo.BaseResponseVo;
 import com.shibro.nativeproducts.data.vo.requestvo.DeleteProductInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestvo.HomePageInfoRequestVo;
 import com.shibro.nativeproducts.data.vo.requestvo.InsertProductInfoRequestVo;
 import com.shibro.nativeproducts.data.vo.requestvo.UpdateProductInfoRequestVo;
 import com.shibro.nativeproducts.persistence.ProductsInfoMapper;
@@ -20,6 +21,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,11 +32,20 @@ public class ProductService {
     @Resource
     private ProductsInfoMapper productsInfoMapper;
 
-    public BaseResponseVo getHomePageInfo() {
+    public BaseResponseVo getHomePageInfo(HomePageInfoRequestVo param) {
+        //设置分页
+        if(Objects.nonNull(param.getCount())&&Objects.nonNull(param.getPage())){
+            Integer start = (param.getPage()-1)*param.getCount();
+            Integer end = param.getPage()*param.getCount();
+            param.setPage(start);
+            param.setCount(end);
+        }
         LOG.info("getHomePageInfo 入参:");
         HomePageInfo homePageInfo = new HomePageInfo();
-        List<ProductsInfo> productsInfos = productsInfoMapper.selectAll();
+        List<ProductsInfo> productsInfos = productsInfoMapper.selectByParam(param);
+        Integer count = productsInfoMapper.selectCount(param);
         homePageInfo.setHomePageInfos(convertHomePageInfo(productsInfos));
+        homePageInfo.setCount(count);
         BaseResponseVo responseVo = BaseResponseVo.successResponseVo(homePageInfo);
         return responseVo;
     }

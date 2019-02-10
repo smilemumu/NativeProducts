@@ -3,6 +3,7 @@ package com.shibro.nativeproducts.controller;
 import com.shibro.nativeproducts.data.vo.BaseRequestVo;
 import com.shibro.nativeproducts.data.vo.BaseResponseVo;
 import com.shibro.nativeproducts.data.vo.requestvo.DeleteProductInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestvo.HomePageInfoRequestVo;
 import com.shibro.nativeproducts.data.vo.requestvo.InsertProductInfoRequestVo;
 import com.shibro.nativeproducts.data.vo.requestvo.UpdateProductInfoRequestVo;
 import com.shibro.nativeproducts.service.ProductService;
@@ -28,8 +29,8 @@ public class ProductController {
      * @return
      */
     @RequestMapping(value = "/product/getHomePageInfo", method = RequestMethod.POST)
-    public BaseResponseVo getHomePageInfo(@RequestBody BaseRequestVo requestVo){
-        return productService.getHomePageInfo();
+    public BaseResponseVo getHomePageInfo(@RequestBody HomePageInfoRequestVo requestVo){
+        return productService.getHomePageInfo(requestVo);
     }
 
 
