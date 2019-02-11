@@ -67,6 +67,13 @@ public class BaseResponseVo {
         responseVo.setMsg(ErrorCodeEnum.UNKNOWN_ERROR.getDesc());
         return responseVo;
     }
+    public static BaseResponseVo failResponseVo(Integer code,String messgae) {
+        BaseResponseVo responseVo = new BaseResponseVo();
+        responseVo.setSuccess(false);
+        responseVo.setCode(code);
+        responseVo.setMsg(messgae);
+        return responseVo;
+    }
 
     public static BaseResponseVo successResponseVo(Object data) {
         BaseResponseVo responseVo = new BaseResponseVo();
