@@ -4,10 +4,7 @@
     <!-- 文件输出格式 -->
     <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
 
-    <!-- prd文件路径 -->
-    <property name="PRD_FILE_PATH" value="/root/SpringBootProgram/logs" />
-    <!--<property name="FILE_PATH" value="C:/idea_projects/logs/native" />-->
-    <!-- 开发环境 -->
+    <property name="FILE_PATH" value="/root/SpringBootProgram/logs" />
     <!-- 文件 -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${FILE_PATH}/native.log</file>
