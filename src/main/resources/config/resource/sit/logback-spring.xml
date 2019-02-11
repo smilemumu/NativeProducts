@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-
-
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
-
+    <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
     <!-- 文件输出格式 -->
     <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
+
     <!-- prd文件路径 -->
-
+    <property name="FILE_PATH" value="C:/idea_projects/logs/native" />
     <!-- 开发环境 -->
-    <!-- springProfile 标签的 name 属性对应 application.properties 中的 spring.profiles.active 的配置。 -->
-    <springProfile name="sit">
-        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-            <encoder>
-                <pattern>${PATTERN}</pattern>
-            </encoder>
-        </appender>
-        <logger name="com.light.springboot" level="error" />
-        <root level="info">
-            <appender-ref ref="CONSOLE" />
-        </root>
-        <root level="warn">
-            <appender-ref ref="CONSOLE" />
-        </root>
-    </springProfile>
+    <!-- 文件 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${FILE_PATH}/native.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${FILE_PATH}/native.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${PATTERN}</pattern>
+        </layout>
+    </appender>
 
+    <!--CONSOLE-->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${PATTERN}</pattern>
+        </layout>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="CONSOLE" />
+    </root>
 
 
 </configuration>

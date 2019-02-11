@@ -79,7 +79,17 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.8.6</version>
+			<version>1.8.13</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.2.3</version>
 		</dependency>
 
 
@@ -116,7 +126,6 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
-					<!--<executable>C:\Program Files\Java\jdk1.8.0_181\bin\javac</executable>-->
 				</configuration>
 			</plugin>
 
