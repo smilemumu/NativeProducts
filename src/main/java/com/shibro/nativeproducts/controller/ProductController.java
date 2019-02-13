@@ -71,7 +71,7 @@ public class ProductController {
      * @return
      */
     @RequestMapping(value = "/product/queryProductType", method = RequestMethod.POST)
-    public BaseResponseVo updateProductInfo(@RequestBody BaseRequestVo requestVo){
+    public BaseResponseVo queryProductType(@RequestBody BaseRequestVo requestVo){
         return productService.queryProductType(requestVo);
     }
 }
