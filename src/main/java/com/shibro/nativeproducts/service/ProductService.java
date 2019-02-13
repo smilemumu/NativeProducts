@@ -40,6 +40,7 @@ public class ProductService {
             param.setPage(start);
             param.setCount(end);
         }
+        convertParam(param);
         LOG.info("getHomePageInfo 入参:");
         HomePageInfo homePageInfo = new HomePageInfo();
         List<ProductsInfo> productsInfos = productsInfoMapper.selectByParam(param);
@@ -48,6 +49,12 @@ public class ProductService {
         homePageInfo.setCount(count);
         BaseResponseVo responseVo = BaseResponseVo.successResponseVo(homePageInfo);
         return responseVo;
+    }
+
+    private void convertParam(HomePageInfoRequestVo param) {
+        if(param.getSort().equals("recommendLevel")){
+            param.setSort("recommend_level");
+        }
     }
 
     private List<HomePageInfoItem> convertHomePageInfo(List<ProductsInfo> productsInfos) {
