@@ -1,4 +1,4 @@
-package com.shibro.nativeproducts.data.vo.requestvo.login;
+package com.shibro.nativeproducts.data.vo.requestVo.login;
 
 import lombok.Data;
 

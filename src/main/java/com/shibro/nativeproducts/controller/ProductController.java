@@ -2,10 +2,10 @@ package com.shibro.nativeproducts.controller;
 
 import com.shibro.nativeproducts.data.vo.BaseRequestVo;
 import com.shibro.nativeproducts.data.vo.BaseResponseVo;
-import com.shibro.nativeproducts.data.vo.requestvo.DeleteProductInfoRequestVo;
-import com.shibro.nativeproducts.data.vo.requestvo.HomePageInfoRequestVo;
-import com.shibro.nativeproducts.data.vo.requestvo.InsertProductInfoRequestVo;
-import com.shibro.nativeproducts.data.vo.requestvo.UpdateProductInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestVo.DeleteProductInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestVo.HomePageInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestVo.InsertProductInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestVo.UpdateProductInfoRequestVo;
 import com.shibro.nativeproducts.service.ProductService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

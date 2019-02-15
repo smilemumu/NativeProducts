@@ -4,21 +4,17 @@ import com.alibaba.fastjson.JSON;
 import com.shibro.nativeproducts.data.entity.UserInfo;
 import com.shibro.nativeproducts.data.enums.ErrorCodeEnum;
 import com.shibro.nativeproducts.data.vo.BaseResponseVo;
-import com.shibro.nativeproducts.data.vo.requestvo.login.*;
+import com.shibro.nativeproducts.data.vo.requestVo.login.*;
 import com.shibro.nativeproducts.persistence.UserInfoMapper;
 import com.shibro.nativeproducts.utils.TokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
 import java.util.Objects;
-import java.util.UUID;
 
 @Service
 public class LoginServce {

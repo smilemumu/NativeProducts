@@ -2,7 +2,7 @@ package com.shibro.nativeproducts.persistence;
 
 
 import com.shibro.nativeproducts.data.entity.ProductsInfo;
-import com.shibro.nativeproducts.data.vo.requestvo.HomePageInfoRequestVo;
+import com.shibro.nativeproducts.data.vo.requestVo.HomePageInfoRequestVo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

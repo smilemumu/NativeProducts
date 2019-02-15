@@ -20,7 +20,7 @@
   </sql>
 
 
-  <select id="selectByParam"  resultMap="BaseResultMap" parameterType="com.shibro.nativeproducts.data.vo.requestvo.HomePageInfoRequestVo">
+  <select id="selectByParam"  resultMap="BaseResultMap" parameterType="com.shibro.nativeproducts.data.vo.requestVo.HomePageInfoRequestVo">
     select
     <include refid="Base_Column_List" />
     from products_info
@@ -52,7 +52,7 @@
 
   </select>
 
-  <select id="selectCount" parameterType="com.shibro.nativeproducts.data.vo.requestvo.HomePageInfoRequestVo" resultType="java.lang.Integer">
+  <select id="selectCount" parameterType="com.shibro.nativeproducts.data.vo.requestVo.HomePageInfoRequestVo" resultType="java.lang.Integer">
     select
     count(id)
     from products_info
