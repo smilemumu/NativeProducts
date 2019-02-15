@@ -2,7 +2,7 @@
 <configuration>
     <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
     <!-- 文件输出格式 -->
-    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
+    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] reqId[%X{reqId}]-| %msg%n" />
 
     <!-- prd文件路径 -->
     <property name="FILE_PATH" value="C:/idea_projects/logs/native" />

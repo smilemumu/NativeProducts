@@ -2,9 +2,9 @@
 <configuration>
     <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
     <!-- 文件输出格式 -->
-    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
+    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] reqId[%X{reqId}]-| %msg%n" />
 
-    <property name="FILE_PATH" value="/root/SpringBootProgram/logs" />
+    <property name="FILE_PATH" value="/root/SpringBootProgram/logs/native/" />
     <!-- 文件 -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${FILE_PATH}/native.log</file>

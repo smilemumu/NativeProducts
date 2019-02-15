@@ -52,8 +52,10 @@ public class ProductService {
     }
 
     private void convertParam(HomePageInfoRequestVo param) {
-        if(param.getSort().equals("recommendLevel")){
-            param.setSort("recommend_level");
+        if(Objects.nonNull(param.getSort())){
+            if(param.getSort().equals("recommendLevel")){
+                param.setSort("recommend_level");
+            }
         }
     }
 

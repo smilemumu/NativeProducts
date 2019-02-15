@@ -105,13 +105,13 @@
 		</profile>
 		<profile> <!-- 生产环境 -->
 			<id>prd</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<profile.active>prd</profile.active>
 				<profile.path>config/resource/prd</profile.path>
 			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 		</profile>
 	</profiles>
 

@@ -1,11 +1,13 @@
 package com.shibro.nativeproducts.filter;
 
+import ch.qos.logback.classic.turbo.MDCFilter;
 import com.alibaba.fastjson.JSON;
 import com.shibro.nativeproducts.data.enums.ErrorCodeEnum;
 import com.shibro.nativeproducts.data.vo.BaseResponseVo;
 import com.shibro.nativeproducts.utils.TokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
@@ -52,7 +54,7 @@ public class LoginFilter implements Filter {
         HttpServletResponse rep = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         String path = req.getRequestURL().toString();
-        LOG.info("request path:" + path);
+
         Boolean pass = specialNotNeedLoginPattern.stream().map(pattern -> pathMatcher.match(pattern, path)).anyMatch(item -> item.equals(true));
         if (pass) {
             chain.doFilter(request, response);
@@ -89,6 +91,5 @@ public class LoginFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 }
