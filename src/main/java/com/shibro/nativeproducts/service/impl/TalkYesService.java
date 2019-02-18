@@ -1,5 +1,6 @@
 package com.shibro.nativeproducts.service.impl;
 
+import com.shibro.nativeproducts.data.enums.TalkWhatEnum;
 import com.shibro.nativeproducts.data.vo.responseVo.BaseTalkResponseData;
 import com.shibro.nativeproducts.data.vo.responseVo.BaseTalkResponseDetail;
 import com.shibro.nativeproducts.data.vo.responseVo.BaseTalkYesResponseDetail;
@@ -16,5 +17,10 @@ public class TalkYesService implements ITalkService {
         talkResponseData.setDetails(talkYesResponseDetail);
         talkResponseData.setName("sayYes");
         return talkResponseData;
+    }
+
+    @Override
+    public TalkWhatEnum getTalkWhatEnum() {
+        return TalkWhatEnum.TALKYES;
     }
 }
