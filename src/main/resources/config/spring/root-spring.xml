@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="spring-context.xml"/>
+    <!--配置-->
+    <import resource="spring-taskpool.xml"/>
+    <!--redis-->
+    <import resource="spring-redis.xml"/>
+    <!--kafka消息-->
+    <import resource="spring-kafka-context.xml"/>
+    <import resource="spring-kafka-producer-context.xml"/>
+
+</beans>

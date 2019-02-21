@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="producerProperties" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="bootstrap.servers" value="${kafka.bootstrap.servers}" />
+				<entry key="acks" value="all" />
+				<entry key="retries" value="10" />
+				<entry key="linger.ms" value="1" />
+				<entry key="batch.size" value="16384" />
+				<entry key="group.id" value="XFD-SEAL" />
+				<entry key="key.serializer" value="org.apache.kafka.common.serialization.StringSerializer" />
+				<entry key="value.serializer" value="org.apache.kafka.common.serialization.StringSerializer" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="producerFactory"
+		class="org.springframework.kafka.core.DefaultKafkaProducerFactory">
+		<constructor-arg ref="producerProperties"/>
+	</bean>
+
+	<bean id="kafkaTemplate" class="org.springframework.kafka.core.KafkaTemplate">
+		<constructor-arg ref="producerFactory"/>
+		<constructor-arg name="autoFlush" value="true"/>
+	</bean>
+
+</beans>

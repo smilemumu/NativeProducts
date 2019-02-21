@@ -24,7 +24,7 @@ public class TalkServiceFactory implements ApplicationContextAware {
         });
     }
 
-    public <T extends ITalkService> T getBean(TalkWhatEnum talkWhatEnum){
+    public static <T extends ITalkService> T getBean(TalkWhatEnum talkWhatEnum){
         return (T)talkServiceMap.get(talkWhatEnum);
     }
 }
