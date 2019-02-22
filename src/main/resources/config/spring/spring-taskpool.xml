@@ -8,15 +8,13 @@
     <!--@EnableAsync-->
     <task:annotation-driven />
 
-    <bean id="BaseTaskExecutor"
+    <!-- 配置的方式定义线程池-->
+    <bean id="baseTaskExecutor"
           class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
         <property name="corePoolSize" value="12" />
         <property name="keepAliveSeconds" value="60" />
         <property name="maxPoolSize" value="50" />
         <property name="queueCapacity" value="1000" />
     </bean>
-
-    <task:executor id="dingdingExecutor" pool-size="10-50" keep-alive="120" queue-capacity="500" />
-
 
 </beans>

@@ -5,6 +5,7 @@ import com.shibro.nativeproducts.data.vo.BaseRequestVo;
 import com.shibro.nativeproducts.data.vo.BaseResponseVo;
 import com.shibro.nativeproducts.data.vo.requestVo.RedisSetParams;
 import com.shibro.nativeproducts.data.vo.requestVo.TalkWhatRequestVo;
+import com.shibro.nativeproducts.service.DemoService;
 import com.shibro.nativeproducts.service.TalkService;
 import com.shibro.nativeproducts.utils.redis.JedisTemplate;
 import org.slf4j.Logger;
@@ -25,6 +26,8 @@ public class DemoController {
     private TalkService talkService;
     @Resource
     private JedisTemplate jedisTemplate;
+    @Resource
+    private DemoService demoService;
 
 
     @DemoAnnotation(name = "demoMethod")
@@ -35,7 +38,7 @@ public class DemoController {
     }
 
     /**
-     * applicationContextDemo
+     * ApplicationContextAware
      */
     @DemoAnnotation(name = "getTalk")
     @RequestMapping(value = "/getTalk", method = RequestMethod.POST)
@@ -44,11 +47,13 @@ public class DemoController {
         return talkService.getTalk(requestVo);
     }
 
+    /**
+     * redis相关
+     */
     @RequestMapping(value = "/redis/get", method = {RequestMethod.GET})
     public String getKey(@RequestBody String key){
         return jedisTemplate.get(key);
     }
-
     @RequestMapping(value = "/redis/del", method = {RequestMethod.GET})
     public void delKey(@RequestBody String key){
         jedisTemplate.del(key);
@@ -56,5 +61,13 @@ public class DemoController {
     @RequestMapping(value = "/redis/set", method = {RequestMethod.POST})
     public void delKey(@RequestBody RedisSetParams params){
         jedisTemplate.set(params.getKey(),params.getValue());
+    }
+
+    /**
+     * 线程池相关
+     */
+    @RequestMapping(value = "/testTask", method = {RequestMethod.POST})
+    public void testTask(@RequestBody BaseRequestVo requestVo){
+        demoService.testTask();
     }
 }
