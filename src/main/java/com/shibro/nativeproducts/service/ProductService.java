@@ -61,6 +61,9 @@ public class ProductService {
 
     private List<HomePageInfoItem> convertHomePageInfo(List<ProductsInfo> productsInfos) {
         List<HomePageInfoItem> homePageInfoItems = new ArrayList<>();
+        if(Objects.isNull(productsInfos)||productsInfos.size()==0){
+            return homePageInfoItems;
+        }
         HomePageInfoItem homePageInfoItem;
         for(ProductsInfo item:productsInfos){
             homePageInfoItem = new HomePageInfoItem();
