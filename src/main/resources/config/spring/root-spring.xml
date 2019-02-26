@@ -11,5 +11,7 @@
     <!--kafka消息-->
     <!--<import resource="spring-kafka-context.xml"/>-->
     <!--<import resource="spring-kafka-producer-context.xml"/>-->
+    <!--AMQ-->
+    <!--<import resource="spring-amq.xml"/>-->
 
 </beans>
