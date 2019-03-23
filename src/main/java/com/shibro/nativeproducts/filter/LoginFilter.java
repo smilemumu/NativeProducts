@@ -35,10 +35,10 @@ public class LoginFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         String staticUrl = "**/static/**";
         String picureUrl = "**/picture/**";
-        String loginUrl = "**/#/login/*";
-        String logoutUrl = "**/logout/*";
-        String registerUrl = "**/register/*";
-        String typeUrl = "**/type/*";
+        String loginUrl = "**/login/**";
+        String logoutUrl = "**/logout/**";
+        String registerUrl = "**/register/**";
+        String typeUrl = "**/type/**";
         LOG.info("初始化用户登录过滤器");
         specialNotNeedLoginPattern.add(staticUrl);
         specialNotNeedLoginPattern.add(picureUrl);
